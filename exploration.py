@@ -1,3 +1,10 @@
+def main():
+	minimum, maximum = introduce_game()
+	guess = get_inital_guess(minimum, maximum)
+	answer = start_guessing(guess)
+	processing_guess(answer, guess)
+	
+
 def introduce_game():
     #Set game conditions
     minimum = 1
@@ -19,31 +26,30 @@ def start_guessing(guess):
     answer = input("Please type yes, higher or lower \n")
     return answer
 
-def check_guess(answer, guess):
-    while game_won(0) 
-        if answer == "yes":
-        game_won()
+def processing_guess(answer, guess):
+    if answer == "yes":
+		game_won()
 
-        elif answer == "higher":
-        print("OK, I'll guess a higher number...")
-        minimum = guess
-        start_guessing(guess)
+    elif answer == "higher":
+		print("OK, I'll guess a higher number...")
+		minimum = guess
+		start_guessing(guess)
 
-        elif answer == "lower":
-        print("OK, I'll guess a lower number...")
-        maximum = guess
-        start_guessing(guess)
+    elif answer == "lower":
+		print("OK, I'll guess a lower number...")
+		maximum = guess
+		start_guessing(guess)
 
-        else:
-        print("Please type a valid answer..")
-        start_guessing(guess)
-    return guess, minimum, maximum
+    else:
+		print("Please type a valid answer..")
+		start_guessing(guess)
+
+	return guess, minimum, maximum
 
 def game_won():
     print("Yes, I won! \n")
     break
 
-minimum, maximum = introduce_game()
-guess = get_inital_guess(minimum, maximum)
-answer = start_guessing(guess)
-check_guess(answer, guess)
+#Good luck explaining this one Mikey - "It's Magical" -Sam 2018 :D
+if __name__ == "__main__":
+  main()
