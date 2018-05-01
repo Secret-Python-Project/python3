@@ -1,3 +1,12 @@
+def run_game():
+  minimum = 1
+  maximum = 1000
+
+  introduce_game(minimum, maximum)
+  guess = make_guess(minimum, maximum)
+  answer = get_user_answer(guess)
+  process_guess(answer, guess, minimum, maximum) # Order matters
+
 def introduce_game(minimum, maximum):
   print ("Welcome")
   # TODO Add a delay of one second
@@ -5,31 +14,10 @@ def introduce_game(minimum, maximum):
   print ("I will try and guess it...\n")
   return
 
-def make_guess(minimum, maximum):
-  return int((minimum + maximum )/ 2)
-
-def game_won():
-  print("Yes, I won!\n")
-
-def next_guess(answer, guess, minimum, maximum):
-  new_guess = make_guess(minimum, maximum)
-  answer = get_user_answer(new_guess)
-  process_guess(answer, new_guess, minimum, maximum)
-
-def guess_higher(answer, guess, minimum, maximum):
-  print("OK, I'll guess a higher number...")
-  minimum = guess
-  next_guess(answer, guess, minimum, maximum)
-
-def guess_lower(answer, guess, minimum, maximum):
-  print("OK, I'll guess a lower number...")
-  maximum = guess
-  next_guess(answer, guess, minimum, maximum)
-
-def ask_again(answer, guess, minimum, maximum):
-  print("Please type a valid answer..")
-  answer = get_user_answer(guess)
-  process_guess(answer, guess, minimum, maximum)
+def get_user_answer(guess):
+  print("Is your number: " + str(guess) + "?")
+  answer = input("Please type yes, higher or lower \n")
+  return answer
 
 def process_guess(answer, guess, minimum, maximum): # reduce to 2 params max
   if answer == "yes":
@@ -41,20 +29,31 @@ def process_guess(answer, guess, minimum, maximum): # reduce to 2 params max
   else:
     ask_again(answer, guess, minimum, maximum)
 
-def get_user_answer(guess):
-  print("Is your number: " + str(guess) + "?")
-  answer = input("Please type yes, higher or lower \n")
-  return answer
+def game_won():
+  print("Yes, I won!\n")
 
-def run_game():
-  minimum = 1
-  maximum = 1000
+def make_guess(minimum, maximum):
+  return int((minimum + maximum )/ 2)
 
-  introduce_game(minimum, maximum)
-  guess = make_guess(minimum, maximum)
+def guess_higher(answer, guess, minimum, maximum):
+  print("OK, I'll guess a higher number...")
+  minimum = guess
+  next_guess(answer, guess, minimum, maximum)
+
+def guess_lower(answer, guess, minimum, maximum):
+  print("OK, I'll guess a lower number...")
+  maximum = guess
+  next_guess(answer, guess, minimum, maximum)
+
+def next_guess(answer, guess, minimum, maximum):
+  new_guess = make_guess(minimum, maximum)
+  answer = get_user_answer(new_guess)
+  process_guess(answer, new_guess, minimum, maximum)
+
+def ask_again(answer, guess, minimum, maximum):
+  print("Please type a valid answer..")
   answer = get_user_answer(guess)
-  process_guess(answer, guess, minimum, maximum) # Order matters
-  # Scope Matters
+  process_guess(answer, guess, minimum, maximum)
 
 # Calling from the terminal sets the calling module name as "__main__"
 # Because this code is at indentaion level 0 it is run first
