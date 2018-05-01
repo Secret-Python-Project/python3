@@ -11,28 +11,35 @@ def make_guess(minimum, maximum):
 def game_won():
   print("Yes, I won!\n")
 
+def next_guess(answer, guess, minimum, maximum):
+  new_guess = make_guess(minimum, maximum)
+  answer = get_user_answer(new_guess)
+  process_guess(answer, new_guess, minimum, maximum)
+
+def guess_higher(answer, guess, minimum, maximum):
+  print("OK, I'll guess a higher number...")
+  minimum = guess
+  next_guess(answer, guess, minimum, maximum)
+
+def guess_lower(answer, guess, minimum, maximum):
+  print("OK, I'll guess a lower number...")
+  maximum = guess
+  next_guess(answer, guess, minimum, maximum)
+
+def ask_again(answer, guess, minimum, maximum):
+  print("Please type a valid answer..")
+  answer = get_user_answer(guess)
+  process_guess(answer, guess, minimum, maximum)
+
 def process_guess(answer, guess, minimum, maximum): # reduce to 2 params max
   if answer == "yes":
     game_won()
-
   elif answer == "higher":
-    print("OK, I'll guess a higher number...")
-    minimum = guess
-    new_guess = make_guess(minimum, maximum)
-    answer = get_user_answer(new_guess)
-    process_guess(answer, new_guess, minimum, maximum)
-
+    guess_higher(answer, guess, minimum, maximum)
   elif answer == "lower":
-    print("OK, I'll guess a lower number...")
-    maximum = guess
-    new_guess = make_guess(minimum, maximum)
-    answer = get_user_answer(new_guess)
-    process_guess(answer, new_guess, minimum, maximum)
-
+    guess_lower(answer, guess, minimum, maximum)
   else:
-    print("Please type a valid answer..")
-    answer = get_user_answer(guess)
-    process_guess(answer, guess, minimum, maximum)
+    ask_again(answer, guess, minimum, maximum)
 
 def get_user_answer(guess):
   print("Is your number: " + str(guess) + "?")
