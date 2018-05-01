@@ -1,4 +1,4 @@
-def main():
+def run_game():
   minimum = 1
   maximum = 1000
 
@@ -49,6 +49,11 @@ def process_guess(answer, guess, minimum, maximum): # reduce to 2 params max
 def game_won():
   print("Yes, I won!\n")
 
-#Good luck explaining this one Mikey - "It's Magical" -Sam 2018 :D
+# Calling from the terminal sets the calling module name as "__main__"
+# Because this code is at indentaion level 0 it is run first
+# We check if the calling module is "__main__" then run run_game()
+# All the def(initions) above are defined but not run
+# run_game() must be defined before it can be called
+# ... so must all the other functions that run_game() calls
 if __name__ == "__main__":
-  main()
+  run_game()
