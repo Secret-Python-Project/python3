@@ -1,3 +1,5 @@
+import time
+
 def run_game():
   minimum = 1
   maximum = 1000
@@ -9,7 +11,7 @@ def run_game():
 
 def introduce_game(minimum, maximum):
   print ("Welcome")
-  # TODO Add a delay of one second
+  time.sleep(1)
   print ("Think of a number between " + str(minimum) + " and " + str(maximum))
   print ("I will try and guess it...\n")
   return
@@ -55,11 +57,12 @@ def ask_again(answer, guess, minimum, maximum):
   answer = get_user_answer(guess)
   process_guess(answer, guess, minimum, maximum)
 
+if __name__ == "__main__":
+  run_game()
+
 # Calling from the terminal sets the calling module name as "__main__"
 # Because this code is at indentaion level 0 it is run first
 # We check if the calling module is "__main__" then run run_game()
 # All the def(initions) above are defined but not run
 # run_game() must be defined before it can be called
 # ... so must all the other functions that run_game() calls
-if __name__ == "__main__":
-  run_game()
